@@ -1,15 +1,170 @@
-fn main(){
-    // loop over a range
-    for i in 1..4{
-        println!("{}", i);
-    }
+#[derive(Debug)] // auto generate debug printing support
 
-    // loop over an array
-    let scores = [90,85,100];
-    for score in scores{
-        println!("score is: {}", score)
-    }
+struct User {
+    username: String,
+    age:u32,
+    active: bool,
 }
+
+fn main(){
+    let user1 = User {
+        username: String::from("pasan"),
+        age: 24,
+        active: true,
+    };
+
+    println!("{} is {} years old and is {}",user1.username, user1.age, user1.active);
+    println!("{}", user1.describe())
+}
+
+impl User {
+    fn describe(&self) -> String{
+        format!("{} (active: {})", self.username, self.active)
+    }
+    
+}
+
+
+
+
+// #[derive(Debug)] // auto generate debug printing support
+
+// struct User {
+//     username: String,
+//     age:u32,
+//     active: bool,
+// }
+
+// fn main(){
+//     let user1 = User {
+//         username: String::from("pasan"),
+//         age: 24,
+//         active: true,
+//     };
+
+//     print!("{} is {} years old and is {}",user1.username, user1.age, user1.active);
+// }
+
+
+// #[derive(Debug)] // auto generate debug printing support
+
+// struct User {
+//     username: String,
+//     age:u32,
+//     active: bool,
+// }
+
+// fn main(){
+//     let user1 = User {
+//         username: String::from("pasan"),
+//         age: 24,
+//         active: true,
+//     };
+
+//     print!("{:?}",user1);
+// }
+
+
+
+
+
+
+
+
+// fn main() {
+//     let mut s = String::from("hello");
+//     add_exclamation(&mut s);
+
+//     println!("{}",s);
+    
+// }
+
+
+// fn add_exclamation(text: &mut String){
+//     text.push_str("!");
+// }
+
+
+
+
+// fn main() {
+//     let mut s = String::from("hello");
+
+//     let r1 = &mut s;
+//     let r2 = &mut s; // erro : second mutable borrow occurs here
+
+//     println!("{} {} ", r1,r2)
+// }
+
+
+
+
+
+// // without & it give "this parameter takes ownership of the value"
+// fn main(){
+//     let s1 = String::from("Hello"); // owned string, created in main
+//     let len = calculate_length(s1);
+
+//     println!("{}", s1);
+//     println!("{}", len);
+
+// }
+
+// fn calculate_length(s: String) -> usize{
+//     s.len()
+// }
+
+
+
+
+
+// fn main(){
+//     let s1 = String::from("Hello"); // owned string, created in main
+//     let len = calculate_length(&s1);
+
+//     println!("{}", s1);
+//     println!("{}", len);
+
+// }
+
+// fn calculate_length(s: &String) -> usize{
+//     s.len()
+// }
+
+
+
+
+
+
+// // to fix the "value borrowed here after move" error is to clone 
+// fn main(){
+//     let s1 = String::from("Hello"); // create a heap allocated growable string different from &str
+//     let s2 = s1.clone();
+//     println!("{}",s1);
+//     println!("{}",s2);
+// }
+
+// fn main(){
+//     let s1 = String::from("Hello"); // create a heap allocated growable string different from &str
+//     let s2 = s1; // as soon as assign the s1 the s2 is the only one that can access that value
+//     println!("{}",s1); // display value borrowed here after move error
+//     println!("{}",s2);
+// }
+
+
+ 
+// fn main(){
+//     // loop over a range
+//     for i in 1..4{
+//         println!("{}", i);
+//     }
+
+//     // loop over an array
+//     let scores = [90,85,100];
+//     for score in scores{
+//         println!("score is: {}", score)
+//     }
+// }
 
 
 
