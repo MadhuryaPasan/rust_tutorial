@@ -1,28 +1,317 @@
-#[derive(Debug)] // auto generate debug printing support
+trait Summary {
+    fn summarize(&self)-> String;
+}
 
-struct User {
-    username: String,
-    age:u32,
-    active: bool,
+struct Article {
+    headline: String,
+}
+
+struct Tweet {
+    text: String,
+}
+
+impl Summary for Article{
+    fn summarize(&self) -> String{
+        format!("Article: {}", self.headline)
+    }
+}
+
+impl Summary for Tweet{
+    fn summarize(&self)-> String {
+        format!("Article: {}", self.text)
+    }
 }
 
 fn main(){
-    let user1 = User {
-        username: String::from("pasan"),
-        age: 24,
-        active: true,
+    let article = Article{
+        headline:String:: from("rust hist 1.0")
     };
 
-    println!("{} is {} years old and is {}",user1.username, user1.age, user1.active);
-    println!("{}", user1.describe())
+    let tweet = Tweet{
+        text: String::from("just learned traits")
+    };
+
+    println!("{}", article.summarize());
+    println!("{}", tweet.summarize());
+
 }
 
-impl User {
-    fn describe(&self) -> String{
-        format!("{} (active: {})", self.username, self.active)
-    }
+
+
+
+
+
+
+// fn largest <T: PartialOrd+ Copy>(list: &[T]) -> T{ //make it generic
+//     let mut largest = list[0];
+
+//     for &item in list{
+//         if item > largest{
+//             largest = item;
+//         }
+//     }
+//     largest
+// }
+
+// fn main(){
+//      let numbers = vec![10,25,3,47,8];
+//      println!("largest {}", largest(&numbers));
+//      let chars = vec!['a','b','c','z'];
+//      println!("largest {}", largest(&chars));
+// }
+
+
+
+// fn largest(list: &[i32]) -> i32{
+//     let mut largest = list[0];
+
+//     for &item in list{
+//         if item > largest{
+//             largest = item;
+//         }
+//     }
+//     largest
+// }
+
+// fn main(){
+//      let numbers = vec![10,25,3,47,8];
+//      println!("largest {}", largest(&numbers));
+// }
+
+
+
+
+
+
+// use std::collections::HashMap; // standard library import
+
+// fn main(){
+//     let mut ages: HashMap<String, u32> = HashMap::new();
+//     ages.insert(String::from("hello"), 24);
+//     ages.insert(String::from("world"), 29);
+
+//     if let Some(age) = ages.get("hello"){
+//         println!("hello is {}", age)
+//     }
+
+//     for (name, age) in & ages{
+//         println!("{} is {}", name, age)
+//     }
+// }
+
+
+
+
+
+
+
+// fn main(){
+//     let mut scores: Vec<i32> = Vec::new();
+
+//     scores.push(90);
+//     scores.push(85);
+
+//     for score in &scores{
+//         println!("Score: {}", score)
+//     }
+//     println!("first score: {}", scores[0]);
+
+//     let owned: String = String:: from("hello");
+//     let borrowed: &str = "world";
+
+//     println!("{},{}", owned, borrowed)
+// }
+
+
+
+
+
+
+
+
+
+// fn divide(a:f64,b:f64)-> Result<f64, String>{ //<if successfull resturn the value, or else return the error string>
+//     if b == 0.0{
+//         Err(String::from("cannot divide by zero"))
+
+//     }else{
+//         Ok(a/b)
+//     }
+// }
+
+// fn main(){
+//     match divide(10.0, 2.0){
+//         Ok(value) => println!("The result is: {}", value),
+//         Err(e)=> println!("Error:{}", e),
+//     }
+
+//     match divide(10.0, -0.0){
+//         Ok(value) => println!("The result is: {}", value),
+//         Err(e)=> println!("Error: {}",e),
+//     }
+// }
+
+
+
+
+
+// fn find_user(id: u32) -> Option<String>{
+//     if id == 1{
+//         Some(String:: from("pasan"))
+//     }else{
+//         None
+//     }
+// }
+
+// fn main(){
+//     let result = find_user(1);
+//     match result{
+//         Some(name) => println!("Found {}", name),
+//         None => println!("No user found")
+//     }
+// }
+
+
+
+
+
+
+
+
+
+// use crate::Shape::Rectangle;
+
+// enum TrafficLight { // an enum exactly one of these variants at a time
+//     Red, // variants without any data
+//     Yellow,
+//     Green,    
+// }
+
+// enum Shape{
+//     Circle(f64),
+//     Rectangle(f64,f64),
+//     Trapezoid(f64, f64, f64)
+// }
+
+// fn area(shape: &Shape) -> f64{
+//     match shape {
+//         Shape::Circle(radius) => 3.14 *radius *radius,
+//         Shape::Rectangle(width, height) => width*height,
+//         _ => 0.0, // if both abouv thing failed this return this.
+//     }
+// }
+
+// fn main (){
+//     let light = TrafficLight::Red;
+
+//     let c = Shape::Circle(2.0);
+//     let r = Rectangle((3.0), (4.0));
+//     let t = Shape:: Trapezoid((1.0), (2.0), (3.0));
     
-}
+//     println!("Circle area: {}", area(&c));
+//     println!("Rectangle area: {}", area(&r));
+//     println!("Trapezoid area: {}", area(&t));
+
+//     match light{
+//         TrafficLight::Red => println!("stop"),
+//         TrafficLight::Yellow => println!("slow down"),
+//         TrafficLight::Green => println!("go"),
+//     }
+// }
+
+
+// use crate::Shape::Rectangle;
+
+// enum TrafficLight { // an enum exactly one of these variants at a time
+//     Red, // variants without any data
+//     Yellow,
+//     Green,    
+// }
+
+// enum Shape{
+//     Circle(f64),
+//     Rectangle(f64,f64),
+// }
+
+// fn area(shape: &Shape) -> f64{
+//     match shape {
+//         Shape::Circle(radius) => 3.14 *radius *radius,
+//         Shape::Rectangle(width, height) => width*height,
+
+//     }
+// }
+
+// fn main (){
+//     let light = TrafficLight::Red;
+
+//     let c = Shape::Circle(2.0);
+//     let r = Rectangle((3.0), (4.0));
+    
+//     println!("Circle area: {}", area(&c));
+//     println!("Rectangle area: {}", area(&r));
+
+//     match light{
+//         TrafficLight::Red => println!("stop"),
+//         TrafficLight::Yellow => println!("slow down"),
+//         TrafficLight::Green => println!("go"),
+//     }
+// }
+
+
+
+
+
+// enum TrafficLight { // an enum exactly one of these variants at a time
+//     Red, // variants without any data
+//     Yellow,
+//     Green,    
+// }
+
+// fn main (){
+//     let light = TrafficLight::Red;
+
+//     match light{
+//         TrafficLight::Red => println!("stop"),
+//         TrafficLight::Yellow => println!("slow down"),
+//         TrafficLight::Green => println!("go"),
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+// #[derive(Debug)] // auto generate debug printing support
+
+// struct User {
+//     username: String,
+//     age:u32,
+//     active: bool,
+// }
+
+// fn main(){
+//     let user1 = User {
+//         username: String::from("pasan"),
+//         age: 24,
+//         active: true,
+//     };
+
+//     println!("{} is {} years old and is {}",user1.username, user1.age, user1.active);
+//     println!("{}", user1.describe())
+// }
+
+// impl User {
+//     fn describe(&self) -> String{
+//         format!("{} (active: {})", self.username, self.active)
+//     }
+    
+// }
 
 
 
